@@ -104,7 +104,7 @@
   --dialog-radius: calc(var(--radius) * 1.75);
   --page-radius: calc(var(--radius) * 1.75);
   --tooltip-radius: calc(var(--radius) * 0.75);
-  --label-radius: calc(var(--radius) * 0.75);
+  --label-radius: calc(infinity * 1px);
 
   /* Depth: large, soft, quiet */
   --surface-shadow: 0 1px 2px rgb(27 27 31 / 0.05), 0 4px 16px rgb(27 27 31 / 0.04);
@@ -149,8 +149,8 @@
   --font-content-latin: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Inter;
   --content-leading: 1.7;
   --content-leading-cjk: 1.8;
-  --h1-weight: 650;
-  --h1-letter-spacing: -0.015em;
+  --h1-weight: 700;
+  --h1-letter-spacing: -0.02em;
   --h2-weight: 650;
   --h2-letter-spacing: -0.01em;
   --h3-weight: 600;
@@ -268,7 +268,7 @@
   --dialog-radius: calc(var(--radius) * 1.75);
   --page-radius: calc(var(--radius) * 1.75);
   --tooltip-radius: calc(var(--radius) * 0.75);
-  --label-radius: calc(var(--radius) * 0.75);
+  --label-radius: calc(infinity * 1px);
 
   --surface-shadow: 0 1px 2px rgb(0 0 0 / 0.24), 0 4px 16px rgb(0 0 0 / 0.2);
   --floating-shadow: 0 20px 48px rgb(0 0 0 / 0.5), 0 4px 12px rgb(0 0 0 / 0.32);
@@ -308,8 +308,8 @@
   --font-content-latin: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Inter;
   --content-leading: 1.7;
   --content-leading-cjk: 1.8;
-  --h1-weight: 650;
-  --h1-letter-spacing: -0.015em;
+  --h1-weight: 700;
+  --h1-letter-spacing: -0.02em;
   --h2-weight: 650;
   --h2-letter-spacing: -0.01em;
   --h3-weight: 600;
@@ -443,4 +443,68 @@ html:not([data-theme-option-board-tint]) [data-mc="board-column"] {
 /* Unfocused desktop window: the frame quiets down (docs' own example pattern) */
 .mod-macos.is-desktop:not(.is-focused) [data-mc="app-rail"] {
   opacity: 0.72;
+}
+
+/* ---------- Candidate v1.1 options ---------- */
+
+/* Ink frame (toggle, light mode): rail + sidebar go graphite-ink while the
+   page stays paper. Variables are scoped to the frame anchors, so the page's
+   own contrast pairs are untouched. */
+.theme-light[data-theme-option-ink-frame="on"] [data-mc="app-rail"] {
+  background: #131316;
+  --rail-item-color: #a3a3ad;
+  --rail-item-hover-background: rgb(255 255 255 / 8%);
+  --rail-item-active-background: rgb(255 255 255 / 13%);
+  --rail-item-active-color: #f4f4f1;
+}
+.theme-light[data-theme-option-ink-frame="on"] [data-mc="sidebar"] {
+  background: #17171a;
+  color: #f4f4f1;
+  --foreground: #f4f4f1;
+  --muted-foreground: #a3a3ad;
+  --faint-foreground: #83838d;
+  --primary: #f4f4f1;
+  --primary-foreground: #17171a;
+  --surface-hover: rgb(255 255 255 / 7%);
+  --surface-selected: rgb(255 255 255 / 12%);
+  --border: rgb(255 255 255 / 8%);
+  --nav-item-color: #a3a3ad;
+  --nav-item-hover-background: rgb(255 255 255 / 7%);
+  --nav-item-hover-color: #f4f4f1;
+  --nav-item-active-background: rgb(255 255 255 / 12%);
+  --nav-item-active-color: #f4f4f1;
+}
+
+/* Ink code (toggle, light mode): code blocks invert to ink with the dark
+   syntax palette; inline code stays paper-grey. */
+.theme-light[data-theme-option-ink-code="on"] {
+  --code-block-background: #1c1c1f;
+  --code-block-color: #f4f4f1;
+  --code-block-border: 1px solid #2c2c31;
+  --code-keyword: #8aa8ff;
+  --code-string: #9ccc7a;
+  --code-number: #e8a06a;
+  --code-function: #b7a6e8;
+  --code-type: #7cc7d9;
+}
+
+/* Avatar shape (select) */
+.theme-light[data-theme-option-avatar-style="squircle"],
+.theme-dark[data-theme-option-avatar-style="squircle"] {
+  --avatar-radius: 10px;
+}
+.theme-light[data-theme-option-avatar-style="square"],
+.theme-dark[data-theme-option-avatar-style="square"] {
+  --avatar-radius: 3px;
+}
+
+/* Label shape (select): pill is the candidate default; soft restores the
+   v1.0.1 chip, square goes technical. */
+.theme-light[data-theme-option-label-style="soft"],
+.theme-dark[data-theme-option-label-style="soft"] {
+  --label-radius: calc(var(--radius) * 0.75);
+}
+.theme-light[data-theme-option-label-style="square"],
+.theme-dark[data-theme-option-label-style="square"] {
+  --label-radius: 4px;
 }

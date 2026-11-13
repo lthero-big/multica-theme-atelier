@@ -18,7 +18,7 @@ Warm graphite layers with a single accent dot, for [Multica](https://multica.ai)
 
 ## Options 主题选项
 
-导入后在外观页的 **主题选项** 里调整，共 9 个：
+导入后在外观页的 **主题选项** 里调整，共 13 个：
 
 | 选项 | 说明 |
 |---|---|
@@ -26,10 +26,14 @@ Warm graphite layers with a single accent dot, for [Multica](https://multica.ai)
 | 页面底色 | 浅/深各一色，默认纸白 `#FAFAF8` / 墨黑 `#141416` |
 | 圆角 | 柔和 8px / 利落 3px / 圆润 12px，全套圆角同心派生 |
 | 密度 | 舒展（行高 38px）/ 紧凑（32px） |
+| 墨黑侧栏 | 开关，默认开：浅色模式下左侧 rail 与侧栏沉为墨黑，页面保持纸白；深色模式无变化 |
+| 深色代码块 | 开关，默认开：浅色模式下代码块反色为墨底浅字；行内代码不变 |
 | 字体 | 默认微软雅黑优先：`"Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Inter`——Windows 雅黑、苹果苹方、Linux/安卓思源黑体；外观页手动选的字体仍会盖过主题 |
 | 正文衬线体 | 开关：内容区拉丁字体切 Georgia、H1 斜体 |
 | 阅读宽度 | 滑杆 38–64rem，默认 48 |
 | 看板列底色 | 关掉后看板列透明 |
+| 头像形状 | 圆（默认）/ 方圆 / 方 |
+| 标签形状 | 药丸（默认）/ 柔和 / 方角 |
 
 ## Design 设计依据
 
