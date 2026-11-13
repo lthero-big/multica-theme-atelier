@@ -452,13 +452,30 @@ html:not([data-theme-option-board-tint]) [data-mc="board-column"] {
    own contrast pairs are untouched. */
 .theme-light[data-theme-option-ink-frame="on"] [data-mc="app-rail"] {
   background: #131316;
+  /* A complete frame palette: with a frame rule present, the rail is
+     measured (and painted) as its own scope, page tones included. */
+  --app-shell: #131316;
+  --background: #131316;
+  --page-canvas: #131316;
+  --surface: #1c1c1f;
+  --surface-raised: #232329;
+  --surface-hover: #26262b;
+  --surface-selected: #313137;
+  --muted: #1c1c1f;
+  --foreground: #f4f4f1;
+  --muted-foreground: #a3a3ad;
+  --faint-foreground: #83838d;
+  --border: rgb(255 255 255 / 8%);
+  --sidebar-accent: #2a2a30;
+  --sidebar-accent-foreground: #f4f4f1;
   --rail-item-color: #a3a3ad;
-  --rail-item-hover-background: rgb(255 255 255 / 8%);
-  --rail-item-active-background: rgb(255 255 255 / 13%);
+  --rail-item-hover-background: #26262b;
+  --rail-item-active-background: #313137;
   --rail-item-active-color: #f4f4f1;
 }
 .theme-light[data-theme-option-ink-frame="on"] [data-mc="sidebar"] {
   background: #17171a;
+  --sidebar: #17171a;
   color: #f4f4f1;
   --foreground: #f4f4f1;
   --muted-foreground: #a3a3ad;
