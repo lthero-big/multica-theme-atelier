@@ -1,0 +1,446 @@
+/* Atelier Graphite — a Multica theme (apiVersion 1, Beta)
+   Warm graphite layers, hairline borders, one accent at a time.
+   Inspiration, checked 2026-11-13:
+   - Mobbin search_sections "sidebar navigation dashboard": Linear (id 71ea4b87)
+     and Notion (id 0e62a6af) — grey-pill selected rows, muted nav text.
+   - 21st.dev Dashboard Sidebar id 14941 (arunjdass): Charcoal Ink dark /
+     Alabaster light dual palette, micro-contrast spacing.
+   - 21st.dev Kanban Board id 24340 (arunjdass): clean minimalist board.
+   Rule set: apple-feel — greyscale layers first, accent <= 5% of a screen,
+   concentric radii, tabular numbers come from the app itself.
+   Default font is Microsoft YaHei first (owner's rule, 2026-11-13), then
+   PingFang SC / Noto Sans CJK SC / Inter for systems without YaHei. Family
+   names live only in --font-ui and --font-content-latin, with no generic
+   family, exactly as the checker requires; a font picked on the Appearance
+   page still overrides the theme. No bundled fonts: well under 1 MB. */
+
+/* ---------- Light ---------- */
+.theme-light {
+  /* Surfaces: paper, frame, card — three layers only */
+  --page-canvas: var(--paper-color);
+  --app-shell: #efeeea;
+  --surface: #ffffff;
+  --surface-foreground: #1b1b1f;
+  --surface-raised: #ffffff;
+  --surface-hover: #f4f3ef;
+  --surface-selected: #e9e7e1;
+  --surface-selected-foreground: #1b1b1f;
+  --surface-border: #e3e1db;
+
+  /* Text */
+  --foreground: #1b1b1f;
+  --muted-foreground: #5a5a63;
+  --faint-foreground: #76767f;
+
+  /* Accent: a single meaning — current / link / done */
+  --brand: #0047bb;
+  --brand-foreground: #ffffff;
+
+  /* Primary action is graphite, not the accent: the accent stays small */
+  --primary: #1b1b1f;
+  --primary-foreground: #fafaf8;
+  --secondary: #f1f0ec;
+  --secondary-foreground: #1b1b1f;
+  --muted: #f1f0ec;
+  --accent: #f1f0ec;
+  --accent-foreground: #1b1b1f;
+
+  /* Hairlines */
+  --border: #e9e7e2;
+  --input: #d8d5cf;
+  --ring: #8a8a93;
+  --floating-border-color: #dddade;
+
+  /* Sidebar / rail follow the frame */
+  --sidebar: #efeeea;
+  --sidebar-foreground: #1b1b1f;
+  --sidebar-primary: #1b1b1f;
+  --sidebar-primary-foreground: #fafaf8;
+  --sidebar-accent: #e2e0da;
+  --sidebar-accent-foreground: #1b1b1f;
+  --sidebar-border: #e3e1db;
+  --sidebar-ring: #8a8a93;
+
+  /* Semantic colours stay muted; they are dots, not areas */
+  --destructive: #b3261e;
+  --success: #3f7a1f;
+  --warning: #9a6a00;
+  --info: #0047bb;
+  --status-backlog: var(--muted-foreground);
+  --status-todo: var(--muted-foreground);
+  --status-in-progress: #b45309;
+  --status-in-review: #3f7a1f;
+  --status-done: var(--brand);
+  --status-blocked: var(--destructive);
+  --status-cancelled: var(--muted-foreground);
+  --priority-urgent: var(--destructive);
+  --priority-high: #c2410c;
+  --priority-medium: var(--warning);
+  --priority-low: var(--brand);
+  --priority-none: var(--muted-foreground);
+  --pr-open: #3f7a1f;
+  --pr-merged: #6d4fc2;
+  --pr-closed: #b3261e;
+
+  /* Charts: one hue, five greyscale-leaning steps */
+  --chart-1: #0047bb;
+  --chart-2: #5b7fa6;
+  --chart-3: #8b98a5;
+  --chart-4: #b9bcbe;
+  --chart-5: #dddcda;
+
+  --find-match: #fde68a;
+  --find-match-active: #f59e0b;
+  --find-match-foreground: #1b1b1f;
+
+  --scrollbar-thumb: rgb(27 27 31 / 14%);
+  --scrollbar-thumb-hover: rgb(27 27 31 / 24%);
+
+  /* Shape: concentric radii derive from one base */
+  --radius: 0.5rem;
+  --card-radius: calc(var(--radius) * 1.5);
+  --menu-radius: calc(var(--radius) * 1.25);
+  --popover-radius: calc(var(--radius) * 1.25);
+  --dialog-radius: calc(var(--radius) * 1.75);
+  --page-radius: calc(var(--radius) * 1.75);
+  --tooltip-radius: calc(var(--radius) * 0.75);
+  --label-radius: calc(var(--radius) * 0.75);
+
+  /* Depth: large, soft, quiet */
+  --surface-shadow: 0 1px 2px rgb(27 27 31 / 0.05), 0 4px 16px rgb(27 27 31 / 0.04);
+  --floating-shadow: 0 16px 40px rgb(27 27 31 / 0.12), 0 3px 10px rgb(27 27 31 / 0.06);
+  --menu-shadow: 0 8px 24px rgb(27 27 31 / 0.08), 0 2px 6px rgb(27 27 31 / 0.05);
+  --page-shadow: var(--surface-shadow);
+  --page-border-color: var(--surface-border);
+  --icon-stroke-width: 1.75;
+
+  /* Tooltips are dark in both modes; pin their text explicitly */
+  --tooltip: #232328;
+  --tooltip-foreground: #f4f4f1;
+  --tooltip-shadow: 0 4px 12px rgb(27 27 31 / 0.16), 0 1px 3px rgb(27 27 31 / 0.12);
+
+  /* Navigation: muted rows, grey-pill selection (Mobbin: Linear / Notion) */
+  --rail-item-color: var(--muted-foreground);
+  --rail-item-active-background: var(--sidebar-accent);
+  --rail-item-active-color: var(--foreground);
+  --nav-item-height: 2rem;
+  --nav-item-color: var(--muted-foreground);
+  --nav-item-hover-background: var(--surface-hover);
+  --nav-item-hover-color: var(--foreground);
+  --nav-item-active-background: var(--surface-selected);
+  --nav-item-active-color: var(--foreground);
+
+  /* Issues and board */
+  --issue-row-height: 38px;
+  --issue-row-padding-x: 1rem;
+  --issue-row-hover-background: var(--surface-hover);
+  --issue-row-selected-background: var(--surface-selected);
+  --issue-row-identifier-color: var(--muted-foreground);
+  --issue-group-header-background: var(--muted);
+  --issue-group-header-hover-background: var(--accent);
+  --board-column-background: color-mix(in oklab, var(--muted) 45%, transparent);
+  --board-card-background: var(--surface);
+  --board-card-hover-background: var(--surface);
+  --board-card-border-color: var(--surface-border);
+  --board-card-shadow: var(--surface-shadow);
+
+  /* Reading */
+  --font-ui: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Inter;
+  --font-content-latin: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Inter;
+  --content-leading: 1.7;
+  --content-leading-cjk: 1.8;
+  --h1-weight: 650;
+  --h1-letter-spacing: -0.015em;
+  --h2-weight: 650;
+  --h2-letter-spacing: -0.01em;
+  --h3-weight: 600;
+  --paragraph-spacing: 0.7rem;
+  --list-marker-color: var(--faint-foreground);
+  --checkbox-color: var(--brand);
+  --checklist-done-color: var(--muted-foreground);
+  --link-color: var(--brand);
+  --link-decoration-color: color-mix(in srgb, var(--brand) 35%, transparent);
+  --link-decoration-color-hover: var(--brand);
+  --mention-color: var(--foreground);
+  --blockquote-border-color: color-mix(in srgb, var(--brand) 45%, transparent);
+  --blockquote-color: var(--muted-foreground);
+  --blockquote-style: normal;
+  --highlight-background: color-mix(in srgb, #facc15 32%, transparent);
+  --table-border-color: var(--border);
+  --table-header-background: var(--muted);
+  --table-header-color: var(--muted-foreground);
+  --table-row-hover-background: color-mix(in srgb, var(--muted) 40%, transparent);
+
+  /* Code: quiet paper-grey blocks, restrained syntax */
+  --code-background: color-mix(in srgb, var(--foreground) 4%, transparent);
+  --code-border-color: color-mix(in srgb, var(--foreground) 6%, transparent);
+  --code-block-background: #f4f3ef;
+  --code-block-border: 1px solid var(--border);
+  --code-keyword: #0047bb;
+  --code-string: #3f7a1f;
+  --code-number: #b45309;
+  --code-function: #6d4fc2;
+  --code-type: #0e7490;
+
+  /* Pressed display chips must not fall back to the pale input fill */
+  --display-chip-pressed-background: #e2e0da;
+  --display-chip-pressed-color: #1b1b1f;
+}
+
+/* ---------- Dark ---------- */
+.theme-dark {
+  --page-canvas: var(--paper-color);
+  --app-shell: #0e0e10;
+  --surface: #1c1c1f;
+  --surface-foreground: #f4f4f1;
+  --surface-raised: #242428;
+  --surface-hover: #26262a;
+  --surface-selected: #2e2e33;
+  --surface-selected-foreground: #f4f4f1;
+  --surface-border: rgb(255 255 255 / 9%);
+
+  --foreground: #f4f4f1;
+  --muted-foreground: #a9a9b2;
+  --faint-foreground: #86868f;
+
+  --brand: #8aa8ff;
+  --brand-foreground: #10131f;
+
+  --primary: #f4f4f1;
+  --primary-foreground: #141416;
+  --secondary: #26262a;
+  --secondary-foreground: #f4f4f1;
+  --muted: #26262a;
+  --accent: #26262a;
+  --accent-foreground: #f4f4f1;
+
+  --border: rgb(255 255 255 / 7%);
+  --input: rgb(255 255 255 / 14%);
+  --ring: #6d6d77;
+  --floating-border-color: rgb(255 255 255 / 10%);
+
+  --sidebar: #17171a;
+  --sidebar-foreground: #f4f4f1;
+  --sidebar-primary: #f4f4f1;
+  --sidebar-primary-foreground: #141416;
+  --sidebar-accent: #2a2a2f;
+  --sidebar-accent-foreground: #f4f4f1;
+  --sidebar-border: rgb(255 255 255 / 8%);
+  --sidebar-ring: #6d6d77;
+
+  --destructive: #f08a80;
+  --success: #9ccc7a;
+  --warning: #e3b341;
+  --info: #8aa8ff;
+  --status-backlog: var(--muted-foreground);
+  --status-todo: var(--muted-foreground);
+  --status-in-progress: #e8a06a;
+  --status-in-review: #9ccc7a;
+  --status-done: var(--brand);
+  --status-blocked: var(--destructive);
+  --status-cancelled: var(--muted-foreground);
+  --priority-urgent: var(--destructive);
+  --priority-high: #e8a06a;
+  --priority-medium: var(--warning);
+  --priority-low: var(--brand);
+  --priority-none: var(--muted-foreground);
+  --pr-open: #9ccc7a;
+  --pr-merged: #b7a6e8;
+  --pr-closed: #f08a80;
+
+  --chart-1: #8aa8ff;
+  --chart-2: #7d94b8;
+  --chart-3: #6d7a89;
+  --chart-4: #4c4c54;
+  --chart-5: #333338;
+
+  --find-match: #8a6d1a;
+  --find-match-active: #e3b341;
+  --find-match-foreground: #f4f4f1;
+
+  --scrollbar-thumb: rgb(255 255 255 / 10%);
+  --scrollbar-thumb-hover: rgb(255 255 255 / 20%);
+
+  --radius: 0.5rem;
+  --card-radius: calc(var(--radius) * 1.5);
+  --menu-radius: calc(var(--radius) * 1.25);
+  --popover-radius: calc(var(--radius) * 1.25);
+  --dialog-radius: calc(var(--radius) * 1.75);
+  --page-radius: calc(var(--radius) * 1.75);
+  --tooltip-radius: calc(var(--radius) * 0.75);
+  --label-radius: calc(var(--radius) * 0.75);
+
+  --surface-shadow: 0 1px 2px rgb(0 0 0 / 0.24), 0 4px 16px rgb(0 0 0 / 0.2);
+  --floating-shadow: 0 20px 48px rgb(0 0 0 / 0.5), 0 4px 12px rgb(0 0 0 / 0.32);
+  --menu-shadow: 0 10px 28px rgb(0 0 0 / 0.36), 0 2px 8px rgb(0 0 0 / 0.22);
+  --page-shadow: var(--surface-shadow);
+  --page-border-color: var(--surface-border);
+  --icon-stroke-width: 1.75;
+
+  --tooltip: #2e2e33;
+  --tooltip-foreground: #f4f4f1;
+  --tooltip-shadow: 0 0 0 1px rgb(255 255 255 / 10%), 0 8px 24px rgb(0 0 0 / 0.44);
+
+  --rail-item-color: var(--muted-foreground);
+  --rail-item-active-background: var(--sidebar-accent);
+  --rail-item-active-color: var(--foreground);
+  --nav-item-height: 2rem;
+  --nav-item-color: var(--muted-foreground);
+  --nav-item-hover-background: var(--surface-hover);
+  --nav-item-hover-color: var(--foreground);
+  --nav-item-active-background: var(--surface-selected);
+  --nav-item-active-color: var(--foreground);
+
+  --issue-row-height: 38px;
+  --issue-row-padding-x: 1rem;
+  --issue-row-hover-background: var(--surface-hover);
+  --issue-row-selected-background: var(--surface-selected);
+  --issue-row-identifier-color: var(--muted-foreground);
+  --issue-group-header-background: var(--muted);
+  --issue-group-header-hover-background: var(--accent);
+  --board-column-background: color-mix(in oklab, var(--muted) 45%, transparent);
+  --board-card-background: var(--surface);
+  --board-card-hover-background: var(--surface);
+  --board-card-border-color: var(--surface-border);
+  --board-card-shadow: var(--surface-shadow);
+
+  --font-ui: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Inter;
+  --font-content-latin: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Inter;
+  --content-leading: 1.7;
+  --content-leading-cjk: 1.8;
+  --h1-weight: 650;
+  --h1-letter-spacing: -0.015em;
+  --h2-weight: 650;
+  --h2-letter-spacing: -0.01em;
+  --h3-weight: 600;
+  --paragraph-spacing: 0.7rem;
+  --list-marker-color: var(--faint-foreground);
+  --checkbox-color: var(--brand);
+  --checklist-done-color: var(--muted-foreground);
+  --link-color: var(--brand);
+  --link-decoration-color: color-mix(in srgb, var(--brand) 35%, transparent);
+  --link-decoration-color-hover: var(--brand);
+  --mention-color: var(--foreground);
+  --blockquote-border-color: color-mix(in srgb, var(--brand) 45%, transparent);
+  --blockquote-color: var(--muted-foreground);
+  --blockquote-style: normal;
+  --highlight-background: color-mix(in srgb, #facc15 26%, transparent);
+  --table-border-color: var(--border);
+  --table-header-background: color-mix(in srgb, var(--muted) 55%, transparent);
+  --table-header-color: var(--muted-foreground);
+  --table-row-hover-background: color-mix(in srgb, var(--muted) 40%, transparent);
+
+  --code-background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  --code-border-color: color-mix(in srgb, var(--foreground) 7%, transparent);
+  --code-block-background: #17171a;
+  --code-block-border: 1px solid var(--border);
+  --code-keyword: #8aa8ff;
+  --code-string: #9ccc7a;
+  --code-number: #e8a06a;
+  --code-function: #b7a6e8;
+  --code-type: #7cc7d9;
+
+  --display-chip-pressed-background: #333338;
+  --display-chip-pressed-color: #f4f4f1;
+}
+
+/* ---------- Options: accent (select sets data-theme-option-accent) ---------- */
+.theme-light[data-theme-option-accent="sage"] {
+  --brand: #3f6212;
+  --info: #3f6212;
+  --chart-1: #3f6212;
+  --code-keyword: #3f6212;
+}
+.theme-dark[data-theme-option-accent="sage"] {
+  --brand: #a3c585;
+  --brand-foreground: #131a0c;
+  --info: #a3c585;
+  --chart-1: #a3c585;
+  --code-keyword: #a3c585;
+}
+.theme-light[data-theme-option-accent="clay"] {
+  --brand: #9a3412;
+  --info: #9a3412;
+  --chart-1: #9a3412;
+  --code-keyword: #9a3412;
+}
+.theme-dark[data-theme-option-accent="clay"] {
+  --brand: #e8a06a;
+  --brand-foreground: #1f130a;
+  --info: #e8a06a;
+  --chart-1: #e8a06a;
+  --code-keyword: #e8a06a;
+}
+
+/* ---------- Options: corners ---------- */
+.theme-light[data-theme-option-corner="sharp"],
+.theme-dark[data-theme-option-corner="sharp"] {
+  --radius: 0.1875rem;
+}
+.theme-light[data-theme-option-corner="round"],
+.theme-dark[data-theme-option-corner="round"] {
+  --radius: 0.75rem;
+}
+
+/* ---------- Options: density ---------- */
+.theme-light[data-theme-option-density="compact"],
+.theme-dark[data-theme-option-density="compact"] {
+  --issue-row-height: 32px;
+  --nav-item-height: 1.75rem;
+  --issue-group-header-height: 2.25rem;
+}
+
+/* ---------- Options: serif reading text (toggle) ---------- */
+.theme-light[data-theme-option-serif-content="on"],
+.theme-dark[data-theme-option-serif-content="on"] {
+  --font-content-latin: Georgia;
+  --h1-style: italic;
+}
+
+/* ---------- Options: reading width (slider sets --reading-width) ---------- */
+.theme-light [data-mc="content"][data-density="document"],
+.theme-dark [data-mc="content"][data-density="document"] {
+  max-width: var(--reading-width);
+}
+
+/* ---------- Options: board tint off (toggle absent when off) ---------- */
+html:not([data-theme-option-board-tint]) [data-mc="board-column"] {
+  --board-column-background: transparent;
+}
+
+/* ---------- Anchor details: character, not chrome ---------- */
+
+/* Urgent rows earn a single 2px accent bar — the only loud mark in a list */
+.theme-light [data-mc="issue-row"][data-priority="urgent"],
+.theme-dark [data-mc="issue-row"][data-priority="urgent"] {
+  box-shadow: inset 2px 0 var(--priority-urgent);
+}
+.theme-light [data-mc="board-card"][data-priority="urgent"],
+.theme-dark [data-mc="board-card"][data-priority="urgent"] {
+  box-shadow: inset 2px 0 var(--priority-urgent), var(--board-card-shadow);
+}
+
+/* Agent comments get a hairline accent edge so machine text reads differently */
+.theme-light [data-mc="comment"][data-author-type="agent"],
+.theme-dark [data-mc="comment"][data-author-type="agent"] {
+  border-left: 2px solid color-mix(in srgb, var(--brand) 55%, transparent);
+}
+
+/* Chat: your own messages sit on the selected surface, others stay plain */
+.theme-light [data-mc="chat-message"][data-role="user"],
+.theme-dark [data-mc="chat-message"][data-role="user"] {
+  background: var(--surface-selected);
+  border-radius: var(--card-radius);
+}
+
+/* Unread inbox items are marked by the accent dot colour of their text weight,
+   not by a coloured wash */
+.theme-light [data-mc="inbox-item"][data-read="false"],
+.theme-dark [data-mc="inbox-item"][data-read="false"] {
+  font-weight: 550;
+}
+
+/* Unfocused desktop window: the frame quiets down (docs' own example pattern) */
+.mod-macos.is-desktop:not(.is-focused) [data-mc="app-rail"] {
+  opacity: 0.72;
+}
