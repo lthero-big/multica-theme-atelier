@@ -426,13 +426,6 @@ html:not([data-theme-option-board-tint]) [data-mc="board-column"] {
   border-left: 2px solid color-mix(in srgb, var(--brand) 55%, transparent);
 }
 
-/* Chat: your own messages sit on the selected surface, others stay plain */
-.theme-light [data-mc="chat-message"][data-role="user"],
-.theme-dark [data-mc="chat-message"][data-role="user"] {
-  background: var(--surface-selected);
-  border-radius: var(--card-radius);
-}
-
 /* Unread inbox items are marked by the accent dot colour of their text weight,
    not by a coloured wash */
 .theme-light [data-mc="inbox-item"][data-read="false"],
